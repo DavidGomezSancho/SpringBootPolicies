@@ -1,0 +1,1 @@
+insert into Taker (id, name, surname1, surname2, telephone, email) values(1, 'name1', 'surname1', null, '9156438254', '1@probe.com');

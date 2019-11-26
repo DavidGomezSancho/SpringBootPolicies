@@ -1,0 +1,43 @@
+base.url: /api/mypolicies/
+kafka.topicName: policies
+
+server:
+    port: 8088
+    servlet:
+        session:
+          cookie:
+            name: UISESSION
+#security:
+#  oauth2:
+#    client:
+#      clientId: SampleClientId
+#      clientSecret: secret
+#      accessTokenUri: http://authorizationserver:8089/auth/oauth/token
+#      userAuthorizationUri: http://authorizationserver:8089/auth/oauth/authorize
+#    resource:
+#      userInfoUri: http://authorizationserver:8089/auth/user/me
+
+spring:
+#  cache.caffeine.spec: maximumSize=100,expireAfterAccess=30m
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    username: sa
+    password: password
+  h2.console:
+    enabled: true
+    path: /h2-console
+  kafka:
+    consumer:
+      bootstrap-servers: kafkaServer.kafkanet:9092
+      group-id: group-id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: kafkaServer.kafkanet:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
